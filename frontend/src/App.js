@@ -23,6 +23,7 @@ const App = () => {
       .catch((err) => { //handles and error from the fetch request or JSON parsing.
         console.log(err);
       })
+      setWord('');
   }
 
  // console.log(process.env)
