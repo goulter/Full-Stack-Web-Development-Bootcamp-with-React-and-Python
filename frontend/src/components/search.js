@@ -2,6 +2,14 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const Search = ({ word, setWord, handleSubmit }) => {
+  //the above detrcuturing can also be written as
+    //const Search = (props) => {
+        //const { word, setWord, handleSubmit } = props;
+  //or like this
+    //const Search = (props) => {
+        //const word = props.word;
+        //const setWord = props.setWord;
+        //const handleSubmit = props.handleSubmit;
   return (
     <Container className="mt-4">
       <Row className="justify-content-center">

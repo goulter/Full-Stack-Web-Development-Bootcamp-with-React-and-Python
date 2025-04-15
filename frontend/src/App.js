@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/header';
 import Search from './components/search';
+import ImageCard from './components/imagecard';
 import { useState } from 'react';
 
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
@@ -26,7 +27,6 @@ const App = () => {
       .then((res) => res.json()) //returns a promise that resolves to the parsed JSON data
       .then((unsplash_data) => { //handles the parsed JSON data
         setImages([unsplash_data, ...images]) //update the existing images array with the new image as well as future search images. New at the front 
-        // was here --> console.log(images);
       })
       .catch((err) => { //handles and error from the fetch request or JSON parsing.
         console.log(err);
@@ -34,12 +34,16 @@ const App = () => {
       setWord('');
   }
 
- // console.log(process.env)
 
   return (
     <div className="App">
       <Header title="Images Gallery"/>
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit}/>
+      {/* render the image card component and pass the first element of the images array as a prop if the images array has data */}
+      {images.length && <ImageCard image={images[0]}/>} {/*the ImageCard component won't load if the images array is empty.*/}
+      {/*outer curly braces are for the entire js expression. 
+        inner are neccessary because images[0] is also a js expression
+        If images[0] was not {}'d it would be interprested as a literal string*/}
     </div>
   );
 }
