@@ -39,11 +39,14 @@ const App = () => {
     <div className="App">
       <Header title="Images Gallery"/>
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit}/>
-      {/* render the image card component and pass the first element of the images array as a prop if the images array has data */}
-      {!!images.length && <ImageCard image={images[0]}/>} {/*the ImageCard component won't load if the images array is empty. !! converts number to boolean*/}
-      {/*outer curly braces are for the entire js expression. 
-        inner are neccessary because images[0] is also a js expression
-        If images[0] was not {}'d it would be interprested as a literal string*/}
+      {/* for each element in the images array, render an image card with the image data */}
+      {/* outer curly braces are for the entire js expression. 
+        inner are neccessary because {image} is also a js expression
+        If {image} was not {}'d it would be interprested as a literal string* /}
+      {/* to resolve the error about Each child in a list should have a unique "key" prop, use the index as unique. */}
+      {images.map((image,index) => 
+        (<ImageCard image={image} key={index}/>)
+      )}
     </div>
   );
 }
