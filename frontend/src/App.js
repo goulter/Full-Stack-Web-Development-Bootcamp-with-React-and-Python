@@ -26,7 +26,7 @@ const App = () => {
     fetch(`https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`) //returns a promise that resolves to a Response object
       .then((res) => res.json()) //returns a promise that resolves to the parsed JSON data
       .then((unsplash_data) => { //handles the parsed JSON data
-        setImages([unsplash_data, ...images]) //update the existing images array with the new image as well as future search images. New at the front 
+        setImages([{...unsplash_data, title:word}, ...images]) //update the existing images array with the new image as well as future search images. New at the front 
       })
       .catch((err) => { //handles and error from the fetch request or JSON parsing.
         console.log(err);
@@ -40,7 +40,7 @@ const App = () => {
       <Header title="Images Gallery"/>
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit}/>
       {/* render the image card component and pass the first element of the images array as a prop if the images array has data */}
-      {images.length && <ImageCard image={images[0]}/>} {/*the ImageCard component won't load if the images array is empty.*/}
+      {!!images.length && <ImageCard image={images[0]}/>} {/*the ImageCard component won't load if the images array is empty. !! converts number to boolean*/}
       {/*outer curly braces are for the entire js expression. 
         inner are neccessary because images[0] is also a js expression
         If images[0] was not {}'d it would be interprested as a literal string*/}
