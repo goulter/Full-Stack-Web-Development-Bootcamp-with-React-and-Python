@@ -43,7 +43,7 @@ const App = () => {
       <Container>
         <Row xs={1} md={2} lg={3}>
           {images.map((image,index) => 
-            (<Col><ImageCard image={image} key={index}/></Col>)
+            (<Col key={index}><ImageCard image={image}/></Col>)
           )}
         </Row>
       </Container>
@@ -57,5 +57,6 @@ const App = () => {
   */
 /* to resolve the error about Each child in a list should have a unique "key" prop, use the index as unique. */
 /* https://react-bootstrap-v4.netlify.app/layout/grid/#row-layout-col-sizing */
+/* key was moved to Col bc Col is the direct child of map. React cares about each element in the list. Col is the element and the direct child */
 
 export default App;
