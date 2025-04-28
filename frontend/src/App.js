@@ -40,10 +40,10 @@ const App = () => {
     <div className="App">
       <Header title="Images Gallery"/>
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit}/>
-      <Container>
+      <Container className="mt-4">
         <Row xs={1} md={2} lg={3}>
           {images.map((image,index) => 
-            (<Col key={index}><ImageCard image={image}/></Col>)
+            (<Col key={index} className='pb-3'><ImageCard image={image}/></Col>)
           )}
         </Row>
       </Container>
