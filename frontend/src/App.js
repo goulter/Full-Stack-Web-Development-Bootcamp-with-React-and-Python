@@ -3,6 +3,7 @@ import Header from './components/header';
 import Search from './components/search';
 import ImageCard from './components/imagecard';
 import { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
@@ -39,16 +40,22 @@ const App = () => {
     <div className="App">
       <Header title="Images Gallery"/>
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit}/>
-      {/* for each element in the images array, render an image card with the image data */}
-      {/* outer curly braces are for the entire js expression. 
-        inner are neccessary because {image} is also a js expression
-        If {image} was not {}'d it would be interprested as a literal string* /}
-      {/* to resolve the error about Each child in a list should have a unique "key" prop, use the index as unique. */}
-      {images.map((image,index) => 
-        (<ImageCard image={image} key={index}/>)
-      )}
+      <Container>
+        <Row xs={1} md={2} lg={3}>
+          {images.map((image,index) => 
+            (<Col><ImageCard image={image} key={index}/></Col>)
+          )}
+        </Row>
+      </Container>
     </div>
   );
 }
+
+/* for each element in the images array, render an image card with the image data */
+/* outer curly braces are for the entire js expression. inner are neccessary because {image} is also a js expression
+  If {image} was not {}'d it would be interprested as a literal string
+  */
+/* to resolve the error about Each child in a list should have a unique "key" prop, use the index as unique. */
+/* https://react-bootstrap-v4.netlify.app/layout/grid/#row-layout-col-sizing */
 
 export default App;
